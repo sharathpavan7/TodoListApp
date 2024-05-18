@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "TodoListApp"
 include(":app")
- 
+include(":feature")
