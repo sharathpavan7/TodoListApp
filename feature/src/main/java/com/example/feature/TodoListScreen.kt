@@ -15,20 +15,23 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 
 
 @Composable
 fun TodoListScreen(
+    navController: NavHostController,
     viewModel: TodoViewModel = hiltViewModel()
 ) {
-    TodoListContent()
+    TodoListContent(navController)
 }
 
 
 @Composable
-fun TodoListContent() {
+fun TodoListContent(navController: NavHostController) {
 //    val todos by viewModel.todoList.collectAsState()
 //    val searchQuery by viewModel.searchQuery.collectAsState()
 
@@ -46,7 +49,7 @@ fun TodoListContent() {
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /*viewModel.onAddNewTodoClick()*/ }) {
+            FloatingActionButton(onClick = { navController.navigate("todoDetails") }) {
                 Icon(Icons.Default.Add, contentDescription = "Add TODO")
             }
         },
@@ -75,5 +78,5 @@ fun TodoListContent() {
 @Composable
 @Preview(showBackground = false)
 fun TodoListContentPreview() {
-    TodoListContent()
+    TodoListContent(navController = NavHostController(LocalContext.current))
 }
