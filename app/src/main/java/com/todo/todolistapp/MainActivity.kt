@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                                 TodoListScreen(navController = navController)
                             }
                             composable("todoDetails") {
-                                TodoDetailsScreen()
+                                TodoDetailsScreen(navController = navController)
                             }
                         }
                     }
