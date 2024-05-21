@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
@@ -13,12 +14,14 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.todo.data.model.Todo
 
 
 @Composable
@@ -26,15 +29,14 @@ fun TodoListScreen(
     navController: NavHostController,
     viewModel: TodoViewModel = hiltViewModel()
 ) {
-    TodoListContent(navController)
+    val todoList = viewModel.todoList.collectAsState(initial = emptyList())
+
+    TodoListContent(navController, todoList = { todoList.value })
 }
 
 
 @Composable
-fun TodoListContent(navController: NavHostController) {
-//    val todos by viewModel.todoList.collectAsState()
-//    val searchQuery by viewModel.searchQuery.collectAsState()
-
+fun TodoListContent(navController: NavHostController, todoList: () -> List<Todo>) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -54,7 +56,7 @@ fun TodoListContent(navController: NavHostController) {
             }
         },
         content = {
-            if (/*todos.isEmpty()*/true) {
+            if (todoList().isEmpty()) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -65,9 +67,9 @@ fun TodoListContent(navController: NavHostController) {
                 }
             } else {
                 LazyColumn {
-//                    items(todos) { todo ->
-//                        Text(todo.name)
-//                    }
+                    items(todoList()) {
+                        Text(it.description)
+                    }
                 }
             }
         }
@@ -78,5 +80,5 @@ fun TodoListContent(navController: NavHostController) {
 @Composable
 @Preview(showBackground = false)
 fun TodoListContentPreview() {
-    TodoListContent(navController = NavHostController(LocalContext.current))
+    TodoListContent(navController = NavHostController(LocalContext.current), todoList = { emptyList() })
 }
