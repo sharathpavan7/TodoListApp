@@ -20,6 +20,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,12 +57,12 @@ fun TodoListContent(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("TODO List") }
+                title = { Text(stringResource(R.string.todo_list)) }
             )
         },
         floatingActionButton = {
             FloatingActionButton(onClick = { navController.navigate("todoDetails") }) {
-                Icon(Icons.Default.Add, contentDescription = "Add TODO")
+                Icon(Icons.Default.Add, contentDescription = stringResource(R.string.add_todo))
             }
         },
         content = {
@@ -72,7 +73,7 @@ fun TodoListContent(
                         .padding(it),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text("Press the + button to add a TODO item")
+                    Text(stringResource(R.string.press_the_button_to_add_a_todo_item))
                 }
             } else {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -83,7 +84,7 @@ fun TodoListContent(
                             .padding(vertical = 8.dp),
                         value = searchQuery(),
                         onValueChange = { onSearchChange(it) },
-                        placeholder = { Text("Search TODOs") }
+                        placeholder = { Text(stringResource(R.string.search_todos)) }
                     )
 
                     LazyColumn {
@@ -109,7 +110,7 @@ fun TodoListContent(
 fun TodoListContentPreview() {
     TodoListContent(
         navController = NavHostController(LocalContext.current),
-        todoList = { listOf(Todo(description = "Sharath"), Todo(description = "Pavan")) },
+        todoList = { emptyList() },
         searchQuery = { "" },
         onSearchChange = {})
 }
