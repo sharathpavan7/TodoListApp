@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import com.todo.data.model.Todo
 import com.todo.data.repository.TodoRepository
+import com.todo.feature.viewmodel.TodoViewModel
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify

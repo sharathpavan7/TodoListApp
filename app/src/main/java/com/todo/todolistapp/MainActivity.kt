@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.todo.feature.TodoDetailsScreen
-import com.todo.feature.TodoListScreen
+import com.todo.feature.compose.TodoDetailsScreen
+import com.todo.feature.compose.TodoListScreen
 import com.todo.todolistapp.ui.theme.TodoListAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
