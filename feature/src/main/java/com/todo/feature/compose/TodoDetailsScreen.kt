@@ -24,7 +24,7 @@ import com.todo.feature.viewmodel.TodoViewModel
 @Composable
 fun TodoDetailsScreen(
     navController: NavHostController,
-    viewModel: TodoViewModel = hiltViewModel()
+    viewModel: TodoViewModel
 ) {
 
     TodoDetailsScreenContent(
