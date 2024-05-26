@@ -79,6 +79,7 @@ class TodoViewModel @Inject constructor(
                     _addTodoInProgress.value = false
                     _errorEvent.update { "Failed to add TODO" }
                     onComplete()
+                    _todo.value = ""
                 }
             }
         }
