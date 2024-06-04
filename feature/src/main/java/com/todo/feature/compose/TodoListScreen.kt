@@ -67,11 +67,12 @@ fun TodoListContent(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.todo_list)) }
+                title = { Text(stringResource(R.string.todo_list)) },
+                backgroundColor = Color(0xFF479B5F)
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { navController.navigate("todoDetails") }) {
+            FloatingActionButton(onClick = { navController.navigate("todoDetails") }, backgroundColor = Color(0xFF479B5F)) {
                 Icon(Icons.Default.Add, contentDescription = stringResource(R.string.add_todo))
             }
         },
